@@ -10,12 +10,21 @@
 		busyIndicatorDelay="{detailView>/delay}">
 		<semantic:titleHeading>
 			<Title
-				text="{PoNumber}"
+				text="{VendName}"
 				level="H2"/>
+
 		</semantic:titleHeading>
 		<semantic:headerContent>
 			<ObjectAttribute title="{i18n>priceTitle}"/>
-
+			<ObjectNumber
+				id="objectHeaderNumber"
+				number="{
+					path: 'NetValue',
+					formatter: '.formatter.currencyValue'
+				}"
+				unit="{Currency}"
+			/>
+				
 		</semantic:headerContent>
 		<semantic:content>
 			<Table
@@ -33,32 +42,74 @@
 							titleStyle="H3"
 							level="H3"/>
 					</Toolbar>
+
 				</headerToolbar>
 				<columns>
 					<Column>
 						<Text text="{i18n>detailLineItemTableIDColumn}"/>
 					</Column>
+
+					<!--ALEX Column Quantity & Sum Total-->
+					<Column
+						minScreenWidth="Tablet"
+						demandPopin="true"						
+						hAlign="End">
+						<Text text="{i18n>detailLineItemQuantityColumn}"/>
+					</Column>
+
 					<Column
 						minScreenWidth="Tablet"
 						demandPopin="true"
 						hAlign="End">
 						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
 					</Column>
+
+					<Column
+						minScreenWidth="Tablet"
+						demandPopin="true"
+						hAlign="End">
+						<Text text="{i18n>detailLineItemTotalSumColumn}"/>
+					</Column>
+					
 				</columns>
 				<items>
 					<ColumnListItem>
 						<cells>
 							<ObjectIdentifier
-								title="{PoItem}"
+								title="{ShortText}"
 								text="{PoItem}"/>
+
+								<!--ALEX Quantity & Sum Total-->
 							<ObjectNumber
-/>
+								number="{
+									path: 'Quantity',
+									formatter: '.formatter.currencyValue'
+								}"
+								unit="{Unit}"/>	
+
+							<ObjectNumber
+								number="{
+									path: 'NetPrice',
+									formatter: '.formatter.currencyValue'
+								}"
+								unit="{Currency}"/>
+
+							<ObjectNumber
+								number="{
+									path: 'Subtotal3',
+									formatter: '.formatter.currencyValue'
+								}"
+								unit="{Currency}"/>
+
 						</cells>
 					</ColumnListItem>
 				</items>
 			</Table>
 		</semantic:content>
 		<!--Semantic ShareMenu Buttons-->
+
+		
+
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction
 				id="shareEmail"
