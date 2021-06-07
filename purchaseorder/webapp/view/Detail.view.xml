@@ -1,13 +1,17 @@
 <mvc:View
 	controllerName="purchaseorder.controller.Detail"
 	xmlns="sap.m"
+	
 	xmlns:semantic="sap.f.semantic"
 	xmlns:mvc="sap.ui.core.mvc">
 
+	
 	<semantic:SemanticPage
 		id="detailPage"
 		busy="{detailView>/busy}"
-		busyIndicatorDelay="{detailView>/delay}">
+		busyIndicatorDelay="{detailView>/delay}"
+		showFooter= "true">
+		
 		<semantic:titleHeading>
 			<Title
 				text="{VendName}"
@@ -24,7 +28,8 @@
 				}"
 				unit="{Currency}"
 			/>
-				
+
+
 		</semantic:headerContent>
 		<semantic:content>
 			<Table
@@ -51,23 +56,17 @@
 
 					<!--ALEX Column Quantity & Sum Total-->
 					<Column
-						minScreenWidth="Tablet"
-						demandPopin="true"						
-						hAlign="End">
+						width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
 						<Text text="{i18n>detailLineItemQuantityColumn}"/>
 					</Column>
 
 					<Column
-						minScreenWidth="Tablet"
-						demandPopin="true"
-						hAlign="End">
+						width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
 						<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
 					</Column>
 
 					<Column
-						minScreenWidth="Tablet"
-						demandPopin="true"
-						hAlign="End">
+						width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
 						<Text text="{i18n>detailLineItemTotalSumColumn}"/>
 					</Column>
 					
@@ -135,6 +134,9 @@
 					press=".toggleFullScreen"/>
 		</semantic:exitFullScreenAction>
 
-	</semantic:SemanticPage>
-
+			<semantic:footerCustomActions>
+                    <Button text="Freigeben" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
+                    <Button text="Ablehnen" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress1"/>
+			</semantic:footerCustomActions>
+	</semantic:SemanticPage>		
 </mvc:View>
