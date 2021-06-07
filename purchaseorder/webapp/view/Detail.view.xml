@@ -7,14 +7,21 @@
 	<semantic:SemanticPage
 		id="detailPage"
 		busy="{detailView>/busy}"
-		busyIndicatorDelay="{detailView>/delay}">
+		busyIndicatorDelay="{detailView>/delay}"
+		showFooter="true">	
+		
 		<semantic:titleHeading>
 			<Title
 				text="{VendName}"
 				level="H2"/>
 
+			
 		</semantic:titleHeading>
 		<semantic:headerContent>
+
+
+			
+		
 			<ObjectAttribute title="{i18n>priceTitle}"/>
 			<ObjectNumber
 				id="objectHeaderNumber"
@@ -106,10 +113,8 @@
 				</items>
 			</Table>
 		</semantic:content>
+
 		<!--Semantic ShareMenu Buttons-->
-
-		
-
 		<semantic:sendEmailAction>
 			<semantic:SendEmailAction
 				id="shareEmail"
@@ -135,6 +140,13 @@
 					press=".toggleFullScreen"/>
 		</semantic:exitFullScreenAction>
 
+<semantic:positiveAction>
+		<semantic:PositiveAction text="Approve" />
+</semantic:positiveAction>
+
+<semantic:negativeAction>
+	<semantic:NegativeAction text="Reject"/>
+</semantic:negativeAction>
 	</semantic:SemanticPage>
 
 </mvc:View>
