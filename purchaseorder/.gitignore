@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-=======
-node_modules/
->>>>>>> 06d2a0dc9ab106336b692f157555e2332e579d1d
 dist/
 .scp/
 .env
@@ -11,3 +6,4 @@ mta_archives
 mta-*
 resources
 archive.zip
+node_modules/
