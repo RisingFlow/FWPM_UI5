@@ -147,7 +147,7 @@ sap.ui.define([
 			this.getOwnerComponent().oListSelector.selectAListItem(sPath);
 
 			oViewModel.setProperty("/shareSendEmailSubject",
-				oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
+				oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId, sObjectName]));
 			oViewModel.setProperty("/shareSendEmailMessage",
 				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},

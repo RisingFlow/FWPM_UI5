@@ -7,7 +7,7 @@
 |**Generation Platform**<br>Visual Studio Code|
 |**Floorplan Used**<br>2masterdetail|
 |**Service Type**<br>OData Url|
-|**Service URL**<br>https://sapsystem.enowa.ag:44301/sap/opu/odata/sap/zpurchaseorder_srv/
+|**Service URL**<br>https://s4h.ososoft.de:44300/sap/opu/odata/SAP/ZOSO_PURCHASE_ORDER_SRV/
 |**Module Name**<br>purchaseorder|
 |**Application Title**<br>Purchase Order|
 |**Namespace**<br>|

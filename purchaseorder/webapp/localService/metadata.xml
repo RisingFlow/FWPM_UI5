@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
     <edmx:DataServices m:DataServiceVersion="2.0">
-        <Schema Namespace="ZPURCHASEORDER_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <Schema Namespace="ZOSO_PURCHASE_ORDER_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
             <EntityType Name="PurchaseOrder" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="PoNumber"/>
@@ -76,13 +76,13 @@
                 <Property Name="CurrencyIso" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ExchRateCm" Type="Edm.Decimal" Nullable="false" Precision="9" Scale="5" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Hold" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <NavigationProperty Name="Items" Relationship="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POItem" FromRole="FromRole_Assoc_PurchaseOrder_POItem" ToRole="ToRole_Assoc_PurchaseOrder_POItem"/>
-                <NavigationProperty Name="ServiceTexts" Relationship="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POServiceText" FromRole="FromRole_Assoc_PurchaseOrder_POServiceText" ToRole="ToRole_Assoc_PurchaseOrder_POServiceText"/>
-                <NavigationProperty Name="ItemServices" Relationship="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POItemService" FromRole="FromRole_Assoc_PurchaseOrder_POItemService" ToRole="ToRole_Assoc_PurchaseOrder_POItemService"/>
-                <NavigationProperty Name="ItemLimits" Relationship="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POItemLimit" FromRole="FromRole_Assoc_PurchaseOrder_POItemLimit" ToRole="ToRole_Assoc_PurchaseOrder_POItemLimit"/>
-                <NavigationProperty Name="ItemContractLimits" Relationship="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POItemContractLimit" FromRole="FromRole_Assoc_PurchaseOrder_POItemContractLimit" ToRole="ToRole_Assoc_PurchaseOrder_POItemContractLimit"/>
-                <NavigationProperty Name="HeaderTexts" Relationship="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POHeaderText" FromRole="FromRole_Assoc_PurchaseOrder_POHeaderText" ToRole="ToRole_Assoc_PurchaseOrder_POHeaderText"/>
-                <NavigationProperty Name="Adress" Relationship="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POAdress" FromRole="FromRole_Assoc_PurchaseOrder_POAdress" ToRole="ToRole_Assoc_PurchaseOrder_POAdress"/>
+                <NavigationProperty Name="Items" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POItem" FromRole="FromRole_Assoc_PurchaseOrder_POItem" ToRole="ToRole_Assoc_PurchaseOrder_POItem"/>
+                <NavigationProperty Name="ServiceTexts" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POServiceText" FromRole="FromRole_Assoc_PurchaseOrder_POServiceText" ToRole="ToRole_Assoc_PurchaseOrder_POServiceText"/>
+                <NavigationProperty Name="ItemServices" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POItemService" FromRole="FromRole_Assoc_PurchaseOrder_POItemService" ToRole="ToRole_Assoc_PurchaseOrder_POItemService"/>
+                <NavigationProperty Name="ItemLimits" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POItemLimit" FromRole="FromRole_Assoc_PurchaseOrder_POItemLimit" ToRole="ToRole_Assoc_PurchaseOrder_POItemLimit"/>
+                <NavigationProperty Name="ItemContractLimits" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POItemContractLimit" FromRole="FromRole_Assoc_PurchaseOrder_POItemContractLimit" ToRole="ToRole_Assoc_PurchaseOrder_POItemContractLimit"/>
+                <NavigationProperty Name="HeaderTexts" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POHeaderText" FromRole="FromRole_Assoc_PurchaseOrder_POHeaderText" ToRole="ToRole_Assoc_PurchaseOrder_POHeaderText"/>
+                <NavigationProperty Name="Adress" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POAdress" FromRole="FromRole_Assoc_PurchaseOrder_POAdress" ToRole="ToRole_Assoc_PurchaseOrder_POAdress"/>
             </EntityType>
             <EntityType Name="POItem" sap:content-version="1">
                 <Key>
@@ -282,11 +282,11 @@
                 <Property Name="MaterialLong" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="PurMatLong" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="ConfMatlLong" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <NavigationProperty Name="History" Relationship="ZPURCHASEORDER_SRV.Assoc_POItem_POItemHistory" FromRole="FromRole_Assoc_POItem_POItemHistory" ToRole="ToRole_Assoc_POItem_POItemHistory"/>
-                <NavigationProperty Name="TotalHistory" Relationship="ZPURCHASEORDER_SRV.Assoc_POItem_POItemHistoryTotal" FromRole="FromRole_Assoc_POItem_POItemHistoryTotal" ToRole="ToRole_Assoc_POItem_POItemHistoryTotal"/>
-                <NavigationProperty Name="Confirmations" Relationship="ZPURCHASEORDER_SRV.Assoc_POItem_POItemConfirmation" FromRole="FromRole_Assoc_POItem_POItemConfirmation" ToRole="ToRole_Assoc_POItem_POItemConfirmation"/>
-                <NavigationProperty Name="Schedules" Relationship="ZPURCHASEORDER_SRV.Assoc_POItem_POItemSchedule" FromRole="FromRole_Assoc_POItem_POItemSchedule" ToRole="ToRole_Assoc_POItem_POItemSchedule"/>
-                <NavigationProperty Name="Texts" Relationship="ZPURCHASEORDER_SRV.Assoc_POItem_POItemText" FromRole="FromRole_Assoc_POItem_POItemText" ToRole="ToRole_Assoc_POItem_POItemText"/>
+                <NavigationProperty Name="History" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemHistory" FromRole="FromRole_Assoc_POItem_POItemHistory" ToRole="ToRole_Assoc_POItem_POItemHistory"/>
+                <NavigationProperty Name="TotalHistory" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemHistoryTotal" FromRole="FromRole_Assoc_POItem_POItemHistoryTotal" ToRole="ToRole_Assoc_POItem_POItemHistoryTotal"/>
+                <NavigationProperty Name="Confirmations" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemConfirmation" FromRole="FromRole_Assoc_POItem_POItemConfirmation" ToRole="ToRole_Assoc_POItem_POItemConfirmation"/>
+                <NavigationProperty Name="Schedules" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemSchedule" FromRole="FromRole_Assoc_POItem_POItemSchedule" ToRole="ToRole_Assoc_POItem_POItemSchedule"/>
+                <NavigationProperty Name="Texts" Relationship="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemText" FromRole="FromRole_Assoc_POItem_POItemText" ToRole="ToRole_Assoc_POItem_POItemText"/>
             </EntityType>
             <EntityType Name="POAdress" sap:content-version="1">
                 <Key>
@@ -665,8 +665,8 @@
                 <Property Name="StkSegLong" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <Association Name="Assoc_PurchaseOrder_POServiceText" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POServiceText"/>
-                <End Type="ZPURCHASEORDER_SRV.POServiceText" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POServiceText"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POServiceText"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POServiceText" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POServiceText"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_PurchaseOrder_POServiceText">
                         <PropertyRef Name="PoNumber"/>
@@ -677,8 +677,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_PurchaseOrder_POItemService" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POItemService"/>
-                <End Type="ZPURCHASEORDER_SRV.POItemService" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POItemService"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POItemService"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItemService" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POItemService"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_PurchaseOrder_POItemService">
                         <PropertyRef Name="PoNumber"/>
@@ -689,8 +689,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_PurchaseOrder_POItemLimit" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POItemLimit"/>
-                <End Type="ZPURCHASEORDER_SRV.POItemLimit" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POItemLimit"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POItemLimit"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItemLimit" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POItemLimit"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_PurchaseOrder_POItemLimit">
                         <PropertyRef Name="PoNumber"/>
@@ -701,8 +701,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_PurchaseOrder_POItemContractLimit" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POItemContractLimit"/>
-                <End Type="ZPURCHASEORDER_SRV.POItemContractLimit" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POItemContractLimit"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POItemContractLimit"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItemContractLimit" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POItemContractLimit"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_PurchaseOrder_POItemContractLimit">
                         <PropertyRef Name="PoNumber"/>
@@ -713,8 +713,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_PurchaseOrder_POHeaderText" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POHeaderText"/>
-                <End Type="ZPURCHASEORDER_SRV.POHeaderText" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POHeaderText"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POHeaderText"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POHeaderText" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POHeaderText"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_PurchaseOrder_POHeaderText">
                         <PropertyRef Name="PoNumber"/>
@@ -725,8 +725,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_PurchaseOrder_POAdress" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POAdress"/>
-                <End Type="ZPURCHASEORDER_SRV.POAdress" Multiplicity="1" Role="ToRole_Assoc_PurchaseOrder_POAdress"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POAdress"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POAdress" Multiplicity="1" Role="ToRole_Assoc_PurchaseOrder_POAdress"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_PurchaseOrder_POAdress">
                         <PropertyRef Name="PoNumber"/>
@@ -737,8 +737,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_PurchaseOrder_POItem" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POItem"/>
-                <End Type="ZPURCHASEORDER_SRV.POItem" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POItem"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.PurchaseOrder" Multiplicity="1" Role="FromRole_Assoc_PurchaseOrder_POItem"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItem" Multiplicity="*" Role="ToRole_Assoc_PurchaseOrder_POItem"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_PurchaseOrder_POItem">
                         <PropertyRef Name="PoNumber"/>
@@ -749,8 +749,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_POItem_POItemHistory" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemHistory"/>
-                <End Type="ZPURCHASEORDER_SRV.POItemHistory" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemHistory"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemHistory"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItemHistory" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemHistory"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_POItem_POItemHistory">
                         <PropertyRef Name="PoItem"/>
@@ -763,8 +763,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_POItem_POItemHistoryTotal" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemHistoryTotal"/>
-                <End Type="ZPURCHASEORDER_SRV.POItemHistoryTotal" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemHistoryTotal"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemHistoryTotal"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItemHistoryTotal" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemHistoryTotal"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_POItem_POItemHistoryTotal">
                         <PropertyRef Name="PoItem"/>
@@ -777,8 +777,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_POItem_POItemConfirmation" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemConfirmation"/>
-                <End Type="ZPURCHASEORDER_SRV.POItemConfirmation" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemConfirmation"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemConfirmation"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItemConfirmation" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemConfirmation"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_POItem_POItemConfirmation">
                         <PropertyRef Name="PoItem"/>
@@ -791,8 +791,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_POItem_POItemSchedule" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemSchedule"/>
-                <End Type="ZPURCHASEORDER_SRV.POItemSchedule" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemSchedule"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemSchedule"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItemSchedule" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemSchedule"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_POItem_POItemSchedule">
                         <PropertyRef Name="PoItem"/>
@@ -805,8 +805,8 @@
                 </ReferentialConstraint>
             </Association>
             <Association Name="Assoc_POItem_POItemText" sap:content-version="1">
-                <End Type="ZPURCHASEORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemText"/>
-                <End Type="ZPURCHASEORDER_SRV.POItemText" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemText"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItem" Multiplicity="1" Role="FromRole_Assoc_POItem_POItemText"/>
+                <End Type="ZOSO_PURCHASE_ORDER_SRV.POItemText" Multiplicity="*" Role="ToRole_Assoc_POItem_POItemText"/>
                 <ReferentialConstraint>
                     <Principal Role="FromRole_Assoc_POItem_POItemText">
                         <PropertyRef Name="PoItem"/>
@@ -818,71 +818,71 @@
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-            <EntityContainer Name="ZPURCHASEORDER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-                <EntitySet Name="PurchaseOrderSet" EntityType="ZPURCHASEORDER_SRV.PurchaseOrder" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemSet" EntityType="ZPURCHASEORDER_SRV.POItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POAdressSet" EntityType="ZPURCHASEORDER_SRV.POAdress" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POHeaderTextSet" EntityType="ZPURCHASEORDER_SRV.POHeaderText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemConfirmationSet" EntityType="ZPURCHASEORDER_SRV.POItemConfirmation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemContractLimitSet" EntityType="ZPURCHASEORDER_SRV.POItemContractLimit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemHistoryTotalSet" EntityType="ZPURCHASEORDER_SRV.POItemHistoryTotal" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemLimitSet" EntityType="ZPURCHASEORDER_SRV.POItemLimit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemScheduleSet" EntityType="ZPURCHASEORDER_SRV.POItemSchedule" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemServiceSet" EntityType="ZPURCHASEORDER_SRV.POItemService" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemTextSet" EntityType="ZPURCHASEORDER_SRV.POItemText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POServiceTextSet" EntityType="ZPURCHASEORDER_SRV.POServiceText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="POItemHistorySet" EntityType="ZPURCHASEORDER_SRV.POItemHistory" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <AssociationSet Name="Assoc_PurchaseOrder_POItemServiceSet" Association="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POItemService" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+            <EntityContainer Name="ZOSO_PURCHASE_ORDER_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="PurchaseOrderSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.PurchaseOrder" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POAdressSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POAdress" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POHeaderTextSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POHeaderText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemConfirmationSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItemConfirmation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemContractLimitSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItemContractLimit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemHistoryTotalSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItemHistoryTotal" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemLimitSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItemLimit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemScheduleSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItemSchedule" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemServiceSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItemService" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemTextSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItemText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POServiceTextSet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POServiceText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="POItemHistorySet" EntityType="ZOSO_PURCHASE_ORDER_SRV.POItemHistory" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="Assoc_PurchaseOrder_POItemServiceSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POItemService" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="PurchaseOrderSet" Role="FromRole_Assoc_PurchaseOrder_POItemService"/>
                     <End EntitySet="POItemServiceSet" Role="ToRole_Assoc_PurchaseOrder_POItemService"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_POItem_POItemTextSet" Association="ZPURCHASEORDER_SRV.Assoc_POItem_POItemText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_POItem_POItemTextSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="POItemSet" Role="FromRole_Assoc_POItem_POItemText"/>
                     <End EntitySet="POItemTextSet" Role="ToRole_Assoc_POItem_POItemText"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_POItem_POItemScheduleSet" Association="ZPURCHASEORDER_SRV.Assoc_POItem_POItemSchedule" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_POItem_POItemScheduleSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemSchedule" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="POItemSet" Role="FromRole_Assoc_POItem_POItemSchedule"/>
                     <End EntitySet="POItemScheduleSet" Role="ToRole_Assoc_POItem_POItemSchedule"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_PurchaseOrder_POItemSet" Association="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_PurchaseOrder_POItemSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="PurchaseOrderSet" Role="FromRole_Assoc_PurchaseOrder_POItem"/>
                     <End EntitySet="POItemSet" Role="ToRole_Assoc_PurchaseOrder_POItem"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_POItem_POItemConfirmationSet" Association="ZPURCHASEORDER_SRV.Assoc_POItem_POItemConfirmation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_POItem_POItemConfirmationSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemConfirmation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="POItemSet" Role="FromRole_Assoc_POItem_POItemConfirmation"/>
                     <End EntitySet="POItemConfirmationSet" Role="ToRole_Assoc_POItem_POItemConfirmation"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_PurchaseOrder_POItemContractLimSet" Association="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POItemContractLimit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_PurchaseOrder_POItemContractLimSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POItemContractLimit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="PurchaseOrderSet" Role="FromRole_Assoc_PurchaseOrder_POItemContractLimit"/>
                     <End EntitySet="POItemContractLimitSet" Role="ToRole_Assoc_PurchaseOrder_POItemContractLimit"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_PurchaseOrder_POItemLimitSet" Association="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POItemLimit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_PurchaseOrder_POItemLimitSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POItemLimit" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="PurchaseOrderSet" Role="FromRole_Assoc_PurchaseOrder_POItemLimit"/>
                     <End EntitySet="POItemLimitSet" Role="ToRole_Assoc_PurchaseOrder_POItemLimit"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_PurchaseOrder_POAdressSet" Association="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POAdress" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_PurchaseOrder_POAdressSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POAdress" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="PurchaseOrderSet" Role="FromRole_Assoc_PurchaseOrder_POAdress"/>
                     <End EntitySet="POAdressSet" Role="ToRole_Assoc_PurchaseOrder_POAdress"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_PurchaseOrder_POHeaderTextSet" Association="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POHeaderText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_PurchaseOrder_POHeaderTextSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POHeaderText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="PurchaseOrderSet" Role="FromRole_Assoc_PurchaseOrder_POHeaderText"/>
                     <End EntitySet="POHeaderTextSet" Role="ToRole_Assoc_PurchaseOrder_POHeaderText"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_POItem_POItemHistoryTotalSet" Association="ZPURCHASEORDER_SRV.Assoc_POItem_POItemHistoryTotal" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_POItem_POItemHistoryTotalSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemHistoryTotal" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="POItemSet" Role="FromRole_Assoc_POItem_POItemHistoryTotal"/>
                     <End EntitySet="POItemHistoryTotalSet" Role="ToRole_Assoc_POItem_POItemHistoryTotal"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_PurchaseOrder_POServiceTextSet" Association="ZPURCHASEORDER_SRV.Assoc_PurchaseOrder_POServiceText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_PurchaseOrder_POServiceTextSet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_PurchaseOrder_POServiceText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="PurchaseOrderSet" Role="FromRole_Assoc_PurchaseOrder_POServiceText"/>
                     <End EntitySet="POServiceTextSet" Role="ToRole_Assoc_PurchaseOrder_POServiceText"/>
                 </AssociationSet>
-                <AssociationSet Name="Assoc_POItem_POItemHistorySet" Association="ZPURCHASEORDER_SRV.Assoc_POItem_POItemHistory" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                <AssociationSet Name="Assoc_POItem_POItemHistorySet" Association="ZOSO_PURCHASE_ORDER_SRV.Assoc_POItem_POItemHistory" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="POItemSet" Role="FromRole_Assoc_POItem_POItemHistory"/>
                     <End EntitySet="POItemHistorySet" Role="ToRole_Assoc_POItem_POItemHistory"/>
                 </AssociationSet>
             </EntityContainer>
-            <atom:link rel="self" href="https://sapsystem.enowa.ag:44301/sap/opu/odata/sap/zpurchaseorder_srv/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
-            <atom:link rel="latest-version" href="https://sapsystem.enowa.ag:44301/sap/opu/odata/sap/zpurchaseorder_srv/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="self" href="https://s4h.ososoft.de:44300/sap/opu/odata/SAP/ZOSO_PURCHASE_ORDER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s4h.ososoft.de:44300/sap/opu/odata/SAP/ZOSO_PURCHASE_ORDER_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

@@ -1,38 +1,125 @@
+<!-- order example: 4500000850 -->
 <mvc:View
 	controllerName="purchaseorder.controller.Detail"
 	xmlns="sap.m"
 	xmlns:semantic="sap.f.semantic"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.layout"
+>
 
 	<semantic:SemanticPage
 		id="detailPage"
 		busy="{detailView>/busy}"
 		busyIndicatorDelay="{detailView>/delay}"
-		showFooter="true">	
+		showFooter="true"
+		>	
 		
 		<semantic:titleHeading>
 			<Title
-				text="{VendName}"
+				text="Purchase Order {PoNumber}"
 				level="H2"/>
-
 			
 		</semantic:titleHeading>
+	
+<!--Header Content-->
+<!--ALEX-->
 		<semantic:headerContent>
+			<!--Name of Vendor-->
 
+		<layout:HorizontalLayout allowWrapping="true">
+				<layout:VerticalLayout class="sapUiMediumMarginEnd">
+					<ObjectAttribute
+					title="{i18n>VendorName}"
+					text="{VendName}"/>
+
+					<ObjectAttribute
+					title="{i18n>OrderAmount}"
+					text="{NetValue} {Currency}"/>
+
+					<ObjectAttribute
+					title="{i18n>OrderDate}"
+					text="{
+						path: 'CreatedOn',
+						type: 'sap.ui.model.type.Date',
+						formatOptions: { style: 'medium' }
+					}"/>
+					
+					<ObjectAttribute
+					title="{i18n>OrderedBy}"
+					text="{CreatedBy}"/>
+
+				</layout:VerticalLayout>
+			</layout:HorizontalLayout>
+
+
+
+			<IconTabBar
+				applyContentPadding="false"
+				expandable="false"
+				selectedKey="Ok"
+			>
+			<items>
+
+			<!--Info Button with status for screen with table-->
+			<!--status must be corrected that not the number is displayed-->
+			<!--Color anpassen an aktuellen Status?-->
+				<IconTabFilter
+					icon="sap-icon://hint"
+					iconDensityAware="false"
+					key=""
+					text="{i18n>detailIconTabBarInfo}"
+				>
+				<content/>
+				</IconTabFilter>
+
+				<IconTabFilter
+					count=""
+					icon="sap-icon://notes"
+					key=""
+					text="{i18n>detailIconTabBarComments}">
+
+					<content>
+						<List
+							id="CommentList"
+							items="{path: 'HeaderTexts'}"
+						>
+							<items>
+								<FeedListItem
+									icon="sap-icon://employee"
+									info="{author}"
+									text="{TextLine}"
+								>
+									<actions>
+										<!--sap.m.FeedListItemAction-->
+									</actions>
+									<customData>
+										<!--sap.ui.core.CustomData-->
+									</customData>
+									<dependents>
+										<!--sap.ui.core.Element-->
+									</dependents>
+									<dragDropConfig>
+										<!--sap.ui.core.dnd.DragDropBase-->
+									</dragDropConfig>
+									<layoutData>
+										<!--sap.ui.core.LayoutData-->
+									</layoutData>
+									<tooltip>
+										<!--sap.ui.core.TooltipBase-->
+									</tooltip>
+								</FeedListItem>
+							
+							</items>
+						</List>
+					</content>
+				</IconTabFilter>
 
 			
-		
-			<ObjectAttribute title="{i18n>priceTitle}"/>
-			<ObjectNumber
-				id="objectHeaderNumber"
-				number="{
-					path: 'NetValue',
-					formatter: '.formatter.currencyValue'
-				}"
-				unit="{Currency}"
-			/>
-				
+			</items>
+
+			</IconTabBar>
 		</semantic:headerContent>
+
 		<semantic:content>
 			<Table
 				id="lineItemsList"
@@ -112,6 +199,9 @@
 					</ColumnListItem>
 				</items>
 			</Table>
+
+			
+
 		</semantic:content>
 
 		<!--Semantic ShareMenu Buttons-->

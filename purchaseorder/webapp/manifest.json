@@ -14,7 +14,7 @@
 		"resources": "resources.json",
 		"dataSources": {
 			"mainService": {
-				"uri": "/sap/opu/odata/sap/zpurchaseorder_srv/",
+				"uri": "/sap/opu/odata/SAP/ZOSO_PURCHASE_ORDER_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -102,6 +102,13 @@
 						"master",
 						"object"
 					]
+				},
+				{
+					"name": "poAdress",
+					"pattern": "POAdressSet/{objectId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": ["master", "poAdress"]
 				}
 			],
 
