@@ -11,12 +11,15 @@ sap.ui.define([
 
 	return BaseController.extend("purchaseorder.controller.Detail", {
 
+
 		formatter: formatter,
 
 		/* =========================================================== */
 		/* lifecycle methods                                           */
 		/* =========================================================== */
 
+
+		
 		onInit : function () {
 			// Model used to manipulate control states. The chosen values make sure,
 			// detail page is busy indication immediately so there is no break in
@@ -33,6 +36,49 @@ sap.ui.define([
 
 			this.getOwnerComponent().getModel().metadataLoaded().then(this._onMetadataLoaded.bind(this));
 		},
+
+
+
+		_onButtonPress: function() {
+				// create dialog lazily
+				if (!this._oDialog) {
+					// create dialog via fragment factory
+					this._oDialog = sap.ui.xmlfragment("purchaseorder.view.Dialog3", this);
+					// connect dialog to view (models, lifecycle)
+					this.getView().addDependent(this._oDialog);
+				}
+				return this._oDialog;
+			},
+	
+			onOpenDialog : function () {
+				this._onButtonPress().open();
+			},
+	
+			onCloseDialog : function () {
+				this._onButtonPress().close();
+			},
+		
+		
+		_onButtonPress1: function(oEvent) {
+
+			var sDialogName = "Dialog4";
+			this.mDialogs = this.mDialogs || {};
+			var oDialog = this.mDialogs[sDialogName];
+			if (!oDialog) {
+				oDialog = new Dialog4(this.getView());
+				this.mDialogs[sDialogName] = oDialog;
+
+				// For navigation.
+				oDialog.setRouter(this.oRouter);
+			}
+
+			var context = oEvent.getSource().getBindingContext();
+			oDialog._oControl.setBindingContext(context);
+
+			oDialog.open();
+
+		},
+
 
 		/* =========================================================== */
 		/* event handlers                                              */

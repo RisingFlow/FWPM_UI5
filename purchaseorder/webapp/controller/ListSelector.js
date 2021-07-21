@@ -1,17 +1,16 @@
 ﻿sap.ui.define([
-	"sap/ui/base/Object",
-	"sap/base/Log"
-], function (BaseObject, Log) {
+	"sap/ui/base/Object"
+], function (BaseObject) {
 	"use strict";
 
-	return BaseObject.extend("purchaseorder.controller.ListSelector", {
+	return BaseObject.extend("purchaseorder.model.ListSelector", {
 
 		/**
 		 * Provides a convenience API for selecting list items. All the functions will wait until the initial load of the a List passed to the instance by the setBoundMasterList
 		 * function.
 		 * @class
 		 * @public
-		 * @alias purchaseorder.controller.ListSelector
+		 * @alias com.sap.build.standard.purchaseOrder.model.ListSelector
 		 */
 
 		constructor : function () {
@@ -25,20 +24,32 @@
 				this._oWhenListHasBeenSet
 					.then(function (oList) {
 						oList.getBinding("items").attachEventOnce("dataReceived",
-							function () {
-								if (this._oList.getItems().length) {
+							function (oData) {
+								if (!oData.getParameter("data")) {
+									fnReject({
+										list : oList,
+										error : true
+									});
+								}
+								var oFirstListItem = oList.getItems()[0];
+								if (oFirstListItem) {
+									// Have to make sure that first list Item is selected
+									// and a select event is triggered. Like that, the corresponding
+									// detail page is loaded automatically
 									fnResolve({
-										list : oList
+										list : oList,
+										firstListitem : oFirstListItem
 									});
 								} else {
 									// No items in the list
 									fnReject({
-										list : oList
+										list : oList,
+										error : false
 									});
 								}
-							}.bind(this)
+							}
 						);
-					}.bind(this));
+					});
 			}.bind(this));
 		},
 
@@ -52,6 +63,7 @@
 			this._oList = oList;
 			this._fnResolveListHasBeenSet(oList);
 		},
+
 
 		/**
 		 * Tries to select and scroll to a list item with a matching binding context. If there are no items matching the binding context or the ListMode is none,
@@ -85,9 +97,46 @@
 					});
 				}.bind(this),
 				function () {
-					Log.warning("Could not select the list item with the path" + sBindingPath + " because the list encountered an error or had no items");
+					jQuery.sap.log.warning("Could not select the list item with the path" + sBindingPath + " because the list encountered an error or had no items");
 				}
 			);
+		},
+
+
+		/* =========================================================== */
+		/* Convenience Functions for List Selection Change Event       */
+		/* =========================================================== */
+
+		/**
+		 * Attaches a listener and listener function to the ListSelector's bound master list. By using
+		 * a promise, the listener is added, even if the list is not available when 'attachListSelectionChange'
+		 * is called.
+		 * @param {function} fnFunction the function to be executed when the list fires a selection change event
+		 * @param {function} oListener the listener object
+		 * @return {com.sap.build.standard.purchaseOrder.model.ListSelector} the list selector object for method chaining
+		 * @public
+		 */
+		attachListSelectionChange : function (fnFunction, oListener) {
+			this._oWhenListHasBeenSet.then(function () {
+				this._oList.attachSelectionChange(fnFunction, oListener);
+			}.bind(this));
+			return this;
+		},
+
+		/**
+		 * Detaches a listener and listener function from the ListSelector's bound master list. By using
+		 * a promise, the listener is removed, even if the list is not available when 'detachListSelectionChange'
+		 * is called.
+		 * @param {function} fnFunction the function to be executed when the list fires a selection change event
+		 * @param {function} oListener the listener object
+		 * @return {com.sap.build.standard.purchaseOrder.model.ListSelector} the list selector object for method chaining
+		 * @public
+		 */
+		detachListSelectionChange : function (fnFunction, oListener) {
+			this._oWhenListHasBeenSet.then(function () {
+				this._oList.detachSelectionChange(fnFunction, oListener);
+			}.bind(this));
+			return this;
 		},
 
 		/**
@@ -101,5 +150,8 @@
 				this._oList.removeSelections(true);
 			}.bind(this));
 		}
+
 	});
-});
+
+}
+);

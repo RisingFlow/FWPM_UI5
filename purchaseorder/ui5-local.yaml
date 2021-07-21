@@ -20,10 +20,10 @@ server:
   - name: fiori-tools-proxy
     afterMiddleware: compression
     configuration:
-      ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+      ignoreCertError: true # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
       backend:
-      - path: /sap
-        url: https://sapsystem.enowa.ag:44301
+      - path: /sap/opu/odata/sap/zoso_purchase_order_srv/
+        url: https://s4h.ososoft.de:44300/
   - name: fiori-tools-appreload
     afterMiddleware: compression
     configuration:

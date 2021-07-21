@@ -1,38 +1,40 @@
 <mvc:View
 	controllerName="purchaseorder.controller.Detail"
+	xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
-	
-	xmlns:semantic="sap.f.semantic"
-	xmlns:mvc="sap.ui.core.mvc">
-
-	
-	<semantic:SemanticPage
-		id="detailPage"
-		busy="{detailView>/busy}"
-		busyIndicatorDelay="{detailView>/delay}"
-		showFooter= "true">
-		
-		<semantic:titleHeading>
-			<Title
-				text="{VendName}"
-				level="H2"/>
-
-		</semantic:titleHeading>
-		<semantic:headerContent>
-			<ObjectAttribute title="{i18n>priceTitle}"/>
-			<ObjectNumber
-				id="objectHeaderNumber"
-				number="{
-					path: 'NetValue',
-					formatter: '.formatter.currencyValue'
-				}"
-				unit="{Currency}"
-			/>
-
-
-		</semantic:headerContent>
-		<semantic:content>
-			<Table
+	height="100%">
+	<Page
+	id="detailPage"
+	title="BESTELLDETAILS" showHeader="true" showFooter="true" showNavButton="false">
+        <content>
+            <ObjectHeader intro="{ID}" title="{ShortText}" number="{path: 'Subtotal3', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" numberUnit="{Currency}" numberState="None" titleActive="false" backgroundDesign="Translucent" condensed="false" visible="true">
+                <attributes>
+                    <ObjectAttribute title="" text="{path: 'Datum', type: 'sap.ui.model.type.Date', formatOptions: { UTC: true, style: 'short' }}" active="false" visible="true"/>
+                </attributes>
+                <statuses/>
+                <markers/>
+            </ObjectHeader>
+            <IconTabBar expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true" selectedKey="Ok">
+                <items>
+                    <IconTabFilter icon="sap-icon://hint" iconColor="Default" text="{Status}" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <content/>
+                    </IconTabFilter>
+                    <IconTabFilter icon="sap-icon://notes" iconColor="Default" text="Notes" count="" design="Vertical" showAll="false" textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+                        <content>
+                            <List width="100%" growing="false" growingThreshold="20" growingScrollToLoad="false" backgroundDesign="Solid" items="{path:'Kommentar', templateShareable:true}">
+                                <items>
+                                    <FeedListItem icon="sap-icon://notes" sender="" text="{Kommentar}" info="{Autor}" timestamp="{path: 'timestamp', type: 'sap.ui.model.type.DateTime', formatOptions: { UTC: true, style: 'short' }}"/>
+                                </items>
+                            </List>
+                        </content>
+                    </IconTabFilter>
+                </items>
+                <content>
+                    <Text text="" width="auto" maxLines="1" wrapping="false" textAlign="Center" textDirection="Inherit" visible="true"/>
+                </content>
+            </IconTabBar>
+            <Table
 				id="lineItemsList"
 				width="auto"
 				items="{Items}"
@@ -72,11 +74,13 @@
 					
 				</columns>
 				<items>
-					<ColumnListItem>
+					<ColumnListItem type="Active">
 						<cells>
 							<ObjectIdentifier
 								title="{ShortText}"
-								text="{PoItem}"/>
+								text="{PoItem}"
+								titleActive="false" 
+								visible="true"/>
 
 								<!--ALEX Quantity & Sum Total-->
 							<ObjectNumber
@@ -104,39 +108,16 @@
 					</ColumnListItem>
 				</items>
 			</Table>
-		</semantic:content>
-		<!--Semantic ShareMenu Buttons-->
-
-		
-
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction
-				id="shareEmail"
-				press=".onSendEmailPress"/>
-		</semantic:sendEmailAction>
-
-		<semantic:closeAction>
-			<semantic:CloseAction
-					id="closeColumn"
-					press=".onCloseDetailPress"/>
-		</semantic:closeAction>
-
-		<semantic:fullScreenAction>
-			<semantic:FullScreenAction
-					id="enterFullScreen"
-					visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
-					press=".toggleFullScreen"/>
-		</semantic:fullScreenAction>
-		<semantic:exitFullScreenAction>
-			<semantic:ExitFullScreenAction
-					id="exitFullScreen"
-					visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
-					press=".toggleFullScreen"/>
-		</semantic:exitFullScreenAction>
-
-			<semantic:footerCustomActions>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                    <ToolbarSpacer width=""/>
                     <Button text="Freigeben" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
                     <Button text="Ablehnen" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress1"/>
-			</semantic:footerCustomActions>
-	</semantic:SemanticPage>		
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+    </Page>
 </mvc:View>
