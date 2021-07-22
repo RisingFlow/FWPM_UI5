@@ -14,7 +14,7 @@
 		"resources": "resources.json",
 		"dataSources": {
 			"mainService": {
-				"uri": "/sap/opu/odata/sap/zoso_purchase_order_srv/",
+				"uri": "/sap/opu/odata/SAP/ZOSO_PURCHASE_ORDER_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -72,19 +72,7 @@
 			},
 			"": {
 				"dataSource": "mainService",
-				"type": "sap.ui.model.odata.v2.ODataModel",
-				"preload": true,
-				"settings": {
-					"loadMetadataAsync": false,
-					"json": true,
-					"bJSON": true,
-					"defaultBindingMode": "TwoWay",
-					"defaultCountMode": "Inline",
-					"useBatch": true,
-					"refreshAfterChange": false,
-					"disableHeadRequestForToken": true
-				}
-				
+				"preload": true
 			}
 		},
 
@@ -114,6 +102,13 @@
 						"master",
 						"object"
 					]
+				},
+				{
+					"name": "poAdress",
+					"pattern": "POAdressSet/{objectId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": ["master", "poAdress"]
 				}
 			],
 

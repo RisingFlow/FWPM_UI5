@@ -1,9 +1,10 @@
 sap.ui.define([
 	"./BaseController",
 	"sap/ui/model/json/JSONModel",
-	"../model/formatter",
-	"sap/m/library"
-], function (BaseController, JSONModel, formatter, mobileLibrary) {
+	"sap/m/library",
+	"sap/m/MessageToast"
+
+], function (BaseController, JSONModel, MessageToast, mobileLibrary) {
 	"use strict";
 
 	// shortcut for sap.m.URLHelper
@@ -12,22 +13,19 @@ sap.ui.define([
 	return BaseController.extend("purchaseorder.controller.Detail", {
 
 
-		formatter: formatter,
 
 		/* =========================================================== */
 		/* lifecycle methods                                           */
 		/* =========================================================== */
 
-
-		
-		onInit : function () {
+		onInit: function () {
 			// Model used to manipulate control states. The chosen values make sure,
 			// detail page is busy indication immediately so there is no break in
 			// between the busy indication for loading the view's meta data
 			var oViewModel = new JSONModel({
-				busy : false,
-				delay : 0,
-				lineItemListTitle : this.getResourceBundle().getText("detailLineItemTableHeading")
+				busy: false,
+				delay: 0,
+				lineItemListTitle: this.getResourceBundle().getText("detailLineItemTableHeading")
 			});
 
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
@@ -39,46 +37,6 @@ sap.ui.define([
 
 
 
-		_onButtonPress: function() {
-				// create dialog lazily
-				if (!this._oDialog) {
-					// create dialog via fragment factory
-					this._oDialog = sap.ui.xmlfragment("purchaseorder.view.Dialog3", this);
-					// connect dialog to view (models, lifecycle)
-					this.getView().addDependent(this._oDialog);
-				}
-				return this._oDialog;
-			},
-	
-			onOpenDialog : function () {
-				this._onButtonPress().open();
-			},
-	
-			onCloseDialog : function () {
-				this._onButtonPress().close();
-			},
-		
-		
-		_onButtonPress1: function(oEvent) {
-
-			var sDialogName = "Dialog4";
-			this.mDialogs = this.mDialogs || {};
-			var oDialog = this.mDialogs[sDialogName];
-			if (!oDialog) {
-				oDialog = new Dialog4(this.getView());
-				this.mDialogs[sDialogName] = oDialog;
-
-				// For navigation.
-				oDialog.setRouter(this.oRouter);
-			}
-
-			var context = oEvent.getSource().getBindingContext();
-			oDialog._oControl.setBindingContext(context);
-
-			oDialog.open();
-
-		},
-
 
 		/* =========================================================== */
 		/* event handlers                                              */
@@ -88,7 +46,7 @@ sap.ui.define([
 		 * Event handler when the share by E-Mail button has been clicked
 		 * @public
 		 */
-		onSendEmailPress : function () {
+		onSendEmailPress: function () {
 			var oViewModel = this.getModel("detailView");
 
 			URLHelper.triggerEmail(
@@ -99,12 +57,65 @@ sap.ui.define([
 		},
 
 
+		_onButtonPress: function () {
+			var oView = this.getView();
+			if (!this.byId("Dialog3")) {
+				sap.ui.core.Fragment.load({
+					id: oView.getId(),
+					name: "purchaseorder.view.Dialog3",
+					controller: this
+				}).then(function (oDialog) {
+					oView.addDependent(oDialog);
+					oDialog.open();
+				}.bind(this));
+			} else {
+				this.byId("Dialog3").open();
+			}
+		},
+
+		_cancel: function () {
+			this.byId("Dialog3").close();
+		},
+
+		_accept: function () {
+			var comment = this.getView().byId("_Kommentar").getValue();
+			MessageToast.show(comment);
+		},
+
+
+		_onButtonPress1: function () {
+			var oView = this.getView();
+			if (!this.byId("Dialog4")) {
+				sap.ui.core.Fragment.load({
+					id: oView.getId(),
+					name: "purchaseorder.view.Dialog4",
+					controller: this
+				}).then(function (oDialog) {
+
+					oView.addDependent(oDialog);
+					oDialog.open();
+				}.bind(this));
+			} else {
+				this.byId("Dialog4").open();
+			}
+		},
+
+		_cancel2: function () {
+			this.byId("Dialog4").close();
+
+		},
+
+
+		_reject: function () {
+			var comment = this.getView().byId("_rejectComment").getValue();
+			this.show(comment);
+		},
 		/**
 		 * Updates the item count within the line item table's header
 		 * @param {object} oEvent an event containing the total number of items in the list
 		 * @private
 		 */
-		onListUpdateFinished : function (oEvent) {
+		onListUpdateFinished: function (oEvent) {
 			var sTitle,
 				iTotalItems = oEvent.getParameter("total"),
 				oViewModel = this.getModel("detailView");
@@ -131,12 +142,12 @@ sap.ui.define([
 		 * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
 		 * @private
 		 */
-		_onObjectMatched : function (oEvent) {
-			var sObjectId =  oEvent.getParameter("arguments").objectId;
+		_onObjectMatched: function (oEvent) {
+			var sObjectId = oEvent.getParameter("arguments").objectId;
 			this.getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
-			this.getModel().metadataLoaded().then( function() {
+			this.getModel().metadataLoaded().then(function () {
 				var sObjectPath = this.getModel().createKey("PurchaseOrderSet", {
-					PoNumber :  sObjectId
+					PoNumber: sObjectId
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
@@ -149,7 +160,7 @@ sap.ui.define([
 		 * @param {string} sObjectPath path to the object to be bound to the view.
 		 * @private
 		 */
-		_bindView : function (sObjectPath) {
+		_bindView: function (sObjectPath) {
 			// Set busy indicator during view binding
 			var oViewModel = this.getModel("detailView");
 
@@ -157,10 +168,10 @@ sap.ui.define([
 			oViewModel.setProperty("/busy", false);
 
 			this.getView().bindElement({
-				path : sObjectPath,
+				path: sObjectPath,
 				events: {
-					change : this._onBindingChange.bind(this),
-					dataRequested : function () {
+					change: this._onBindingChange.bind(this),
+					dataRequested: function () {
 						oViewModel.setProperty("/busy", true);
 					},
 					dataReceived: function () {
@@ -170,7 +181,7 @@ sap.ui.define([
 			});
 		},
 
-		_onBindingChange : function () {
+		_onBindingChange: function () {
 			var oView = this.getView(),
 				oElementBinding = oView.getElementBinding();
 
@@ -193,12 +204,12 @@ sap.ui.define([
 			this.getOwnerComponent().oListSelector.selectAListItem(sPath);
 
 			oViewModel.setProperty("/shareSendEmailSubject",
-				oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
+				oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId, sObjectName]));
 			oViewModel.setProperty("/shareSendEmailMessage",
 				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
 
-		_onMetadataLoaded : function () {
+		_onMetadataLoaded: function () {
 			// Store original busy indicator delay for the detail view
 			var iOriginalViewBusyDelay = this.getView().getBusyIndicatorDelay(),
 				oViewModel = this.getModel("detailView"),
@@ -210,7 +221,7 @@ sap.ui.define([
 			oViewModel.setProperty("/delay", 0);
 			oViewModel.setProperty("/lineItemTableDelay", 0);
 
-			oLineItemTable.attachEventOnce("updateFinished", function() {
+			oLineItemTable.attachEventOnce("updateFinished", function () {
 				// Restore original busy indicator delay for line item table
 				oViewModel.setProperty("/lineItemTableDelay", iOriginalLineItemTableBusyDelay);
 			});
@@ -243,7 +254,7 @@ sap.ui.define([
 				this.getModel("appView").setProperty("/layout", "MidColumnFullScreen");
 			} else {
 				// reset to previous layout
-				this.getModel("appView").setProperty("/layout",  this.getModel("appView").getProperty("/previousLayout"));
+				this.getModel("appView").setProperty("/layout", this.getModel("appView").getProperty("/previousLayout"));
 			}
 		}
 	});
