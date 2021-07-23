@@ -14,9 +14,9 @@
 		>	
 		
 		<semantic:titleHeading>
-			<Title
-				text="Purchase Order {PoNumber}"
-				level="H2"/>
+
+			<Image  height="133px" src="https://ososoft.de/wp-content/uploads/2020/07/ososoft_logo.png"/>
+			
 			
 		</semantic:titleHeading>
 	
@@ -26,7 +26,14 @@
 			<!--Name of Vendor-->
 
 		<layout:HorizontalLayout allowWrapping="true">
+
+				
+
 				<layout:VerticalLayout class="sapUiMediumMarginEnd">
+					<Title
+				text="Purchase Order {PoNumber}"
+				level="H2"/>
+
 					<ObjectAttribute
 					title="{i18n>VendorName}"
 					text="{VendName}"/>
